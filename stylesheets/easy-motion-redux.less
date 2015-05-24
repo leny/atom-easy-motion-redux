@@ -1,0 +1,29 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
+// for a full listing of what's available.
+@import "syntax-variables";
+
+atom-text-editor .easy-motion-redux-cover .letter-cover {
+  &.single {
+    color: hsl( hue( red ), 100% - saturation( @syntax-background-color ), 60% - lightness( @syntax-background-color ) * 0.2 );
+  }
+
+  &.many {
+    color: hsl( hue( yellow ), 100% - saturation( @syntax-background-color ), 60% - lightness( @syntax-background-color ) * 0.2 );
+  }
+
+  background-color: @syntax-selection-color;
+  z-index: 10;
+}
+
+.easy-motion-redux-input {
+    position: absolute;
+    z-index: -1;
+    width: 0px;
+    height: 0px;
+}
+
+atom-text-editor.easy-motion-redux-editor .search-results .marker .region {
+    display: none;
+}

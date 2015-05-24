@@ -1,0 +1,25 @@
+# Keybindings require three things to be fully defined: A selector that is
+# matched against the focused element, the keystroke and the command to
+# execute.
+#
+# Below is a basic keybinding which registers on all platforms by applying to
+# the root workspace element.
+
+# For more detailed documentation see
+# https://atom.io/docs/latest/advanced/keymaps
+
+".platform-darwin atom-text-editor:not([mini])":
+  "cmd-shift-e": "easy-motion-redux:start"
+  "cmd-shift-y": "easy-motion-redux:start-reverse"
+
+".platform-darwin .find-and-replace .find-container atom-text-editor":
+  "cmd-shift-e": "easy-motion-redux:start-contextual"
+  "cmd-shift-y": "easy-motion-redux:start-contextual-reverse"
+
+".platform-win32 atom-text-editor:not([mini]), .platform-linux atom-text-editor:not([mini])":
+  "ctrl-shift-e": "easy-motion-redux:start"
+  "ctrl-shift-y": "easy-motion-redux:start-reverse"
+
+".platform-win32 .find-and-replace .find-container atom-text-editor, .platform-linux .find-and-replace .find-container atom-text-editor":
+  "ctrl-shift-e": "easy-motion-redux:start-contextual"
+  "ctrl-shift-y": "easy-motion-redux:start-contextual-reverse"
