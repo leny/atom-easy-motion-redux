@@ -2,18 +2,18 @@
 //
 // See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
 // for a full listing of what's available.
-@import "syntax-variables";
+@import "ui-variables";
 
 atom-text-editor .easy-motion-redux-cover .letter-cover {
   &.single {
-    color: hsl( hue( red ), 100% - saturation( @syntax-background-color ), 60% - lightness( @syntax-background-color ) * 0.2 );
+    color: hsl( hue( @text-color-error ), 100% - saturation( @background-color ), 60% - lightness( @background-color ) * 0.2 );
   }
 
   &.many {
-    color: hsl( hue( yellow ), 100% - saturation( @syntax-background-color ), 60% - lightness( @syntax-background-color ) * 0.2 );
+    color: hsl( hue( @text-color-warning ), 100% - saturation( @background-color ), 60% - lightness( @background-color ) * 0.2 );
   }
 
-  background-color: @syntax-selection-color;
+  background-color: @text-color-selected;
   z-index: 10;
 }
 
