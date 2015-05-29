@@ -10,16 +10,6 @@
 
 ".platform-darwin atom-text-editor:not([mini])":
   "cmd-shift-e": "easy-motion-redux:start"
-  "cmd-shift-y": "easy-motion-redux:start-reverse"
-
-".platform-darwin .find-and-replace .find-container atom-text-editor":
-  "cmd-shift-e": "easy-motion-redux:start-contextual"
-  "cmd-shift-y": "easy-motion-redux:start-contextual-reverse"
 
 ".platform-win32 atom-text-editor:not([mini]), .platform-linux atom-text-editor:not([mini])":
   "ctrl-shift-e": "easy-motion-redux:start"
-  "ctrl-shift-y": "easy-motion-redux:start-reverse"
-
-".platform-win32 .find-and-replace .find-container atom-text-editor, .platform-linux .find-and-replace .find-container atom-text-editor":
-  "ctrl-shift-e": "easy-motion-redux:start-contextual"
-  "ctrl-shift-y": "easy-motion-redux:start-contextual-reverse"
