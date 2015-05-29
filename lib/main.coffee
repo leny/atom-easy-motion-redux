@@ -7,9 +7,10 @@ module.exports =
       default: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
   start: ( bReverse = no ) ->
-    console.log "easy-motion-redux:start()"
-    oInput = new InputView atom.workspace.getActiveTextEditor(), bReverse
+    oInput = new InputView atom.workspace.getActiveTextEditor()
     atom.workspace.addBottomPanel item: oInput
+
+    oInput.resetWords()
 
     if oInput.hasWords()
       oInput.focus()
@@ -19,4 +20,3 @@ module.exports =
   activate: ->
     atom.commands.add "atom-text-editor:not([mini])",
       "easy-motion-redux:start": => @start()
-      "easy-motion-redux:start-reverse": => @start yes

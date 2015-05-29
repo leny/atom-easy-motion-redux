@@ -10,30 +10,27 @@ module.exports = class InputView extends View
   @content: ->
     @div class: "easy-motion-redux-input", =>
       @div class: "editor-container", outlet: "editorContainer"
-      @subview "editor", new TextEditorView mini: yes, placeholderText: "EasyMotion"
+      @subview "editorInput", new TextEditorView mini: yes, placeholderText: "EasyMotion"
 
-  initialize: ( @oRefTextEditor, @bReverseMatch = no, oOptions = {} ) ->
+  initialize: ( @oRefTextEditor, oOptions = {} ) ->
+    @subscriptions = new CompositeDisposable
+
     @oRefTextEditorView = atom.views.getView @oRefTextEditor
     @markers = new Markers @oRefTextEditor, @oRefTextEditorView
 
-    # @oRefTextEditor.addClass "easy-motion-redux-editor"
-    @editor
-      .on "submit", @confirm
-      .on "cancel", @remove
-      .find "input"
-        .on "keypress", @autosubmit
-        .on "blur", @remove
-        .end()
-      # .on "core:page-up", => @oRefTextEditor.trigger "core:page-up"
-      # .on "core:page-down", => @oRefTextEditor.trigger "core:page-down"
+    @oRefTextEditorView.classList.add "easy-motion-redux-editor"
 
-    console.log @editor.getModel()
+    @handleEvents oOptions
 
-    # @disposables = new CompositeDisposable()
-    # @disposables.add @oRefTextEditor.onDidScrollTopChanged if oOptions.noReloadOnScroll then @goBack else _.debounce @resetWords, 50
-    # @disposables.add ( $ window ).onDidResize if oOptions.noReloadOnResize then @goBack else _.debounce @resetWords, 50
-
-    @resetWords()
+  handleEvents: ( oOptions = {} ) ->
+    @editorInput.element.addEventListener "keypress", @autosubmit
+    @editorInput.element.addEventListener "blur", @remove
+    @subscriptions.add atom.commands.add @editorInput.element,
+      "core:confirm": => @confirm()
+      "core:cancel": => @remove()
+      "core:page-up": => @oRefTextEditor.trigger "core:page-up"
+      "core:page-down": => @oRefTextEditor.trigger "core:page-down"
+    @subscriptions.add @oRefTextEditor.onDidChangeScrollTop @goBack
 
   resetWords: =>
     do @markers.clear
@@ -43,8 +40,7 @@ module.exports = class InputView extends View
   hasWords: => @aWordStarts.length > 0
 
   autosubmit: ( oEvent ) =>
-    console.log "?"
-    @pickWords oEvent.originalEvent.data
+    @pickWords String.fromCharCode oEvent.charCode
     if @aWordStarts.length > 1
       @groupWords()
     else
@@ -52,21 +48,21 @@ module.exports = class InputView extends View
     no
 
   remove: =>
-    @markers.remove()
-    # @oRefTextEditor.removeClass "easy-motion-redux-editor"
+    @subscriptions.dispose()
+    @markers.clear()
+    @oRefTextEditorView.classList.remove "easy-motion-redux-editor"
     super()
 
   confirm: =>
-    @oRefTextEditor.setCursorBufferPosition @aWordStarts[ 0 ][ if not @bReverseMatch then "start" else "end" ]
+    @oRefTextEditor.setCursorBufferPosition @aWordStarts[ 0 ][ 0 ]
     @goBack()
 
   goBack: =>
-    # @disposables.dispose()
-    @oRefTextEditor.focus()
+    @oRefTextEditorView.focus()
     @remove()
 
   focus: ->
-    @editor.focus()
+    @editorInput.focus()
 
   groupWords: =>
     iCount = @aWordStarts.length
@@ -103,7 +99,7 @@ module.exports = class InputView extends View
       iLast += iTake
 
   pickWords: ( sCharacter ) ->
-    do @cover.clearLetterCovers
+    do @markers.clear
     if sCharacter of @oGroupedWordStarts and @oGroupedWordStarts[ sCharacter ].length
       @aWordStarts = @oGroupedWordStarts[ sCharacter ]
       return
