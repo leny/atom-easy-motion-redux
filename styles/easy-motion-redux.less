@@ -1,0 +1,21 @@
+// The ui-variables file is provided by base themes provided by Atom.
+//
+// See https://github.com/atom/atom-dark-ui/blob/master/stylesheets/ui-variables.less
+// for a full listing of what's available.
+@import "ui-variables";
+
+atom-text-editor .easy-motion-redux-letter {
+  position: absolute;
+
+  &.single {
+    color: hsl( hue( @text-color-error ), 100% - saturation( @app-background-color ), 60% - lightness( @app-background-color ) * 0.2 );
+  }
+
+  &.many {
+    color: hsl( hue( @text-color-warning ), 100% - saturation( @app-background-color ), 60% - lightness( @app-background-color ) * 0.2 );
+  }
+
+  background-color: lighten(@app-background-color, 25%) !important;
+  border-radius: 3px;
+  z-index: 10;
+}
