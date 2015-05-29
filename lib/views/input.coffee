@@ -27,7 +27,7 @@ module.exports = class InputView extends View
     @editorInput.element.addEventListener "blur", @remove
     @subscriptions.add atom.commands.add @editorInput.element,
       "core:confirm": => @confirm()
-      "core:cancel": => @remove()
+      "core:cancel": => @goBack()
       "core:page-up": => @oRefTextEditor.trigger "core:page-up"
       "core:page-down": => @oRefTextEditor.trigger "core:page-down"
     @subscriptions.add @oRefTextEditor.onDidChangeScrollTop @goBack
