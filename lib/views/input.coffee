@@ -13,6 +13,10 @@ module.exports = class InputView extends View
       @subview "editorInput", new TextEditorView mini: yes, placeholderText: "EasyMotion"
 
   initialize: ( @oRefTextEditor, oOptions = {} ) ->
+    @sFirstLetter = null
+
+    @bWithLetterMode = oOptions['withLetterMode'] || false
+
     @subscriptions = new CompositeDisposable
 
     @oRefTextEditorView = atom.views.getView @oRefTextEditor
@@ -32,6 +36,21 @@ module.exports = class InputView extends View
       "core:page-down": => @oRefTextEditor.trigger "core:page-down"
     @subscriptions.add @oRefTextEditor.onDidChangeScrollTop @goBack
 
+  go: =>
+    if @bWithLetterMode and !@sFirstLetter?
+      # Prompt the user to press the first letter
+      @editorInput.getModel().setPlaceholderText("First Letter: (space for any)")
+      @focus()
+      # and wait
+      return
+
+    @resetWords()
+
+    if @hasWords()
+      @focus()
+    else
+      @goBack()
+
   resetWords: =>
     do @markers.clear
     @loadWords()
@@ -40,6 +59,13 @@ module.exports = class InputView extends View
   hasWords: => @aWordStarts.length > 0
 
   autosubmit: ( oEvent ) =>
+    if !@sFirstLetter? and @bWithLetterMode
+      # they pressed the first letter
+      # store it and then go and show the markers
+      @sFirstLetter = String.fromCharCode oEvent.charCode
+      @go()
+      return
+
     @pickWords String.fromCharCode oEvent.charCode
     if @aWordStarts.length > 1
       @groupWords()
@@ -49,6 +75,7 @@ module.exports = class InputView extends View
 
   remove: =>
     @subscriptions.dispose()
+    @editorInput.element.removeEventListener "blur", @remove
     @markers.clear()
     @oRefTextEditorView.classList.remove "easy-motion-redux-editor"
     super()
@@ -121,7 +148,7 @@ module.exports = class InputView extends View
 
     aWordStarts = []
 
-    fMarkBeginning = ( oObj ) ->
+    fMarkBeginning = ( oObj ) =>
       [ iBeginWord, iBeginWordEnd ] = [ null, null ]
 
       if not @bReverseMatch
@@ -131,7 +158,9 @@ module.exports = class InputView extends View
         iBeginWordEnd = oObj.range.end
         iBeginWord = [ iBeginWordEnd.row, iBeginWordEnd.column - 1 ]
 
-      aWordStarts.push [ iBeginWord, iBeginWordEnd ]
+      if !@bWithLetterMode or @sFirstLetter == ' ' or
+          oObj.matchText.toLowerCase().startsWith(@sFirstLetter.toLowerCase())
+        aWordStarts.push [ iBeginWord, iBeginWordEnd ]
 
     for oRowRange in @getRowRanges()
       oBuffer.scanInRange @wordRegExp(), oRowRange, fMarkBeginning

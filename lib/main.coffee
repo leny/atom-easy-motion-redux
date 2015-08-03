@@ -9,14 +9,14 @@ module.exports =
   start: ( bReverse = no ) ->
     oInput = new InputView atom.workspace.getActiveTextEditor()
     atom.workspace.addBottomPanel item: oInput
+    oInput.go()
 
-    oInput.resetWords()
-
-    if oInput.hasWords()
-      oInput.focus()
-    else
-      oInput.remove()
+  startWithLetter: () ->
+    oInput = new InputView atom.workspace.getActiveTextEditor(), { 'withLetterMode': true }
+    atom.workspace.addBottomPanel item: oInput
+    oInput.go()
 
   activate: ->
     atom.commands.add "atom-text-editor:not([mini])",
       "easy-motion-redux:start": => @start()
+      "easy-motion-redux:start-with-letter": => @startWithLetter()
