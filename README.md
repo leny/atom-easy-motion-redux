@@ -14,4 +14,6 @@ Check out that repository to better understand what this plugin does.
 
 To start easy-motion press **Shift+Cmd+E**. Rebind this in settings to better suit you. By default the characters that replace words are **ABC....Z**. You can replace this if you want, also from settings.
 
+You can also bind to easy-motion:start-with-letter (default **Shift+Cmd+Alt+E**). This will prompt for a letter and limit the jump targets to words that start with that letter. If you press 'space' as the letter it will fall back to the default behavior, meaning you might prefer to stick with just this keybind.
+
 **Note:** the package is like *in beta*, since the original code used many features that has been deprecated with the atom API v1.0. Don't hesitate to report issues & bugs, or submit pull requests to help me maintain this package.

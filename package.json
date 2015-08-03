@@ -10,7 +10,8 @@
   },
   "activationCommands": {
     "atom-text-editor:not([mini])": [
-      "easy-motion-redux:start"
+      "easy-motion-redux:start",
+      "easy-motion-redux:start-with-letter"
     ]
   },
   "dependencies": {
