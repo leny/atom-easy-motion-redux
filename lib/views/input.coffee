@@ -75,6 +75,7 @@ module.exports = class InputView extends View
 
   remove: =>
     @subscriptions.dispose()
+    @editorInput.element.removeEventListener "blur", @remove
     @markers.clear()
     @oRefTextEditorView.classList.remove "easy-motion-redux-editor"
     super()
