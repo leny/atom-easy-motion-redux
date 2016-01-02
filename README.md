@@ -12,9 +12,30 @@ The original package seems dead and, with the deprecation of the atom API pre-1.
 
 Check out that repository to better understand what this plugin does.
 
-Start easy-motion with the `easy-motion-redux:start` command. Rebind this in settings to better suit you. By default the characters that replace words are **ABC....Z**. You can replace this if you want, also from settings.
+## Modes
 
-**Note:** the package is like *in beta*, since the original code used many features that has been deprecated with the atom API v1.0. Don't hesitate to report issues & bugs, or submit pull requests to help me maintain this package.
+By default the characters used for markers are **ABC....Z**. You can replace this if you want, also from settings.
+
+### Jump to words
+
+**Command:** `easy-motion-redux:words`  
+Jump to words.
+
+<img src="./caps/mode-words.gif" styles="text-align:center;">
+
+### Jump to letter
+
+**Command:** `easy-motion-redux:letter`  
+Jump to given letter.
+
+<img src="./caps/mode-letter.gif" styles="text-align:center;">
+
+### Jump to words starting by letter
+
+**Command:** `easy-motion-redux:words_starting`  
+Jump to words starting by given letter.
+
+<img src="./caps/mode-words-starting.gif" styles="text-align:center;">
 
 ## Keybindings
 
