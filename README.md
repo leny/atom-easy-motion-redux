@@ -23,6 +23,11 @@ Jump to words.
 
 <img src="./caps/mode-words.gif" styles="text-align:center;">
 
+#### Select to words
+
+**Command:** `easy-motion-redux:words-select`  
+Select from current cursor position to word.
+
 ### Jump to letter
 
 **Command:** `easy-motion-redux:letter`  
@@ -30,12 +35,22 @@ Jump to given letter.
 
 <img src="./caps/mode-letter.gif" styles="text-align:center;">
 
+#### Select to letter
+
+**Command:** `easy-motion-redux:letter-select`  
+Select from current cursor position to given letter.
+
 ### Jump to words starting by letter
 
 **Command:** `easy-motion-redux:words_starting`  
 Jump to words starting by given letter.
 
 <img src="./caps/mode-words-starting.gif" styles="text-align:center;">
+
+#### Select to words starting by letter
+
+**Command:** `easy-motion-redux:words_starting-select`  
+Select from current cursor position to words starting by given letter.
 
 ## Keybindings
 
