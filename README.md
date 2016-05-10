@@ -21,7 +21,7 @@ By default the characters used for markers are **ABC....Z**. You can replace thi
 **Command:** `easy-motion-redux:words`  
 Jump to words.
 
-<img src="./caps/mode-words.gif" styles="text-align:center;">
+<img src="https://raw.githubusercontent.com/leny/atom-easy-motion-redux/master/caps/mode-words.gif" styles="text-align:center;">
 
 #### Select to words
 
@@ -33,7 +33,7 @@ Select from current cursor position to word.
 **Command:** `easy-motion-redux:letter`  
 Jump to given letter.
 
-<img src="./caps/mode-letter.gif" styles="text-align:center;">
+<img src="https://raw.githubusercontent.com/leny/atom-easy-motion-redux/master/caps/mode-letter.gif" styles="text-align:center;">
 
 #### Select to letter
 
@@ -45,7 +45,7 @@ Select from current cursor position to given letter.
 **Command:** `easy-motion-redux:words_starting`  
 Jump to words starting by given letter.
 
-<img src="./caps/mode-words-starting.gif" styles="text-align:center;">
+<img src="https://raw.githubusercontent.com/leny/atom-easy-motion-redux/master/caps/mode-words-starting.gif" styles="text-align:center;">
 
 #### Select to words starting by letter
 
