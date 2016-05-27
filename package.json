@@ -1,6 +1,6 @@
 {
   "name": "easy-motion-redux",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "./lib/main",
   "description": "MovementSpeed++. Jump to any word in your current view super fast. (redux)",
   "repository": "https://github.com/leny/atom-easy-motion-redux",
