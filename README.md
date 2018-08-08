@@ -1,5 +1,7 @@
 # atom easy-motion (redux) package
 
+[![Build Status](https://travis-ci.org/leny/atom-easy-motion-redux.svg?branch=master)](https://travis-ci.org/leny/atom-easy-motion-redux)
+
 > MovementSpeed++. Jump to any word in your current view super fast.
 
 * * *
