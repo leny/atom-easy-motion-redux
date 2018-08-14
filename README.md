@@ -54,6 +54,16 @@ Jump to words starting by given letter.
 **Command:** `easy-motion-redux:words_starting-select`  
 Select from current cursor position to words starting by given letter.
 
+### Jump to lines
+
+**Command:** `easy-motion-redux:lines`  
+Jump to lines.
+
+#### Select to lines
+
+**Command:** `easy-motion-redux:lines-select`  
+Select from current cursor position to line.
+
 ## Keybindings
 
 With the success of Atom, it's really difficult to choose keybindings that will not enter in conflict whit anyone else's packages, so I have removed the default keystrokes and let the keymap empty to let you set your own keybindings.
